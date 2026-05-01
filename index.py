@@ -1,17 +1,23 @@
 from flask import Flask
 from datetime import datetime
+import pytz
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    current_time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+    india = pytz.timezone('Asia/Kolkata')
+    current_time = datetime.now(india).strftime("%d-%m-%Y %H:%M:%S")
 
     return f"""
     <html>
+
     <head>
         <title>Flask Interactive App</title>
+
         <style>
+
             body {{
                 background-color: #0f172a;
                 color: white;
@@ -53,12 +59,15 @@ def home():
                 background: #0ea5e9;
                 color: white;
             }}
+
         </style>
+
     </head>
 
     <body>
 
         <div class="container">
+
             <h1>🚀 Welcome to Flask App</h1>
 
             <p>Hello Suresh 👋</p>
@@ -66,23 +75,30 @@ def home():
             <p>Your Flask application is running successfully inside Docker.</p>
 
             <p>🕒 Current Server Time:</p>
+
             <h2>{current_time}</h2>
 
             <a class="btn" href="/about">About App</a>
+
         </div>
 
     </body>
+
     </html>
     """
 
 @app.route("/about")
 def about():
+
     return """
     <html>
+
     <head>
+
         <title>About</title>
 
         <style>
+
             body {
                 background-color: #111827;
                 color: white;
@@ -100,7 +116,9 @@ def about():
                 text-decoration: none;
                 font-size: 20px;
             }
+
         </style>
+
     </head>
 
     <body>
@@ -116,6 +134,7 @@ def about():
         <a href="/">⬅ Back to Home</a>
 
     </body>
+
     </html>
     """
 
