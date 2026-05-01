@@ -1,6 +1,13 @@
-FROM python:alpine3.7
-COPY . /app
+FROM python:3.7-alpine
+
 WORKDIR /app
-RUN pip install -r requirements.txt
+
+COPY . /app
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pip install flask pytz
+
 EXPOSE 5000
-CMD python ./index.py
+
+CMD ["python", "index.py"]
